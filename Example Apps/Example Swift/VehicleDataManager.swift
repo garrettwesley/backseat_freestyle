@@ -143,7 +143,7 @@ extension VehicleDataManager {
             }
             if data.fuelLevel != nil {
                 if updates["fuelLevel"] == nil {
-                    updates["firstfl"] = data.odometer
+                    updates["firstfl"] = data.fuelLevel
                 }
                 updates["fuelLevel"] = data.fuelLevel
             }
