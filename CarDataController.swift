@@ -13,6 +13,7 @@ import SnapKit
 
 class CarDataController: UIViewController, ProxyManagerDelegate {
     var proxyState = ProxyState.stopped
+    let row = UIView()
     var keys = ["speed", "avg speed", "rpm", "fuel level", "fuel range", "odometer", "coordinates", "temperature"]
     
     lazy var collectionView: UICollectionView = {
@@ -41,21 +42,24 @@ class CarDataController: UIViewController, ProxyManagerDelegate {
     
     override func viewDidLoad() {
         title = car_name
-        let row = UIView()
+        if #available(iOS 11.0, *) {
+            navigationItem.largeTitleDisplayMode = .never
+        }
         
         ProxyManager.sharedManager.delegate = self
         view.backgroundColor = UIColor(red: 0.96, green: 0.97, blue: 0.98, alpha: 1.0)
-        view.addSubview(row)
         view.addSubview(collectionView)
-
+        view.addSubview(row)
+        
         row.snp.makeConstraints { make in
             make.top.left.right.equalTo(view)
             make.height.equalTo(100)
         }
+
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(row.snp.bottom)
-            make.centerX.bottom.equalTo(view)
             make.width.equalTo(view).multipliedBy(0.9)
+            make.centerX.bottom.equalTo(view)
+            make.top.equalTo(row.snp.bottom)
         }
 
         let db = Firestore.firestore();
@@ -102,7 +106,7 @@ class CarDataController: UIViewController, ProxyManagerDelegate {
                 }
                 if values["fuelLevel"] != nil {
                     let fuelLevel = values["fuelLevel"] as! Double
-                    self.carData[x] = "\(fuelLevel * 100)%"
+                    self.carData[x] = "\(fuelLevel)%"
                     x += 1
                 }
                 if values["fuelRange"] != nil {
@@ -129,7 +133,6 @@ class CarDataController: UIViewController, ProxyManagerDelegate {
         })
         
     }
-    
     
     func didChangeProxyState(_ newState: ProxyState) {
         proxyState = newState
