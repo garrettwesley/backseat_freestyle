@@ -1,0 +1,130 @@
+<h1>SDLScrollableMessage Class Reference</h1>
+
+<h3>Section Contents</h3>
+
+<ul>
+  <li><a href="#section--initWithMessage:">-initWithMessage:</a></li>
+  <li><a href="#section--initWithMessage:timeout:softButtons:">-initWithMessage:timeout:softButtons:</a></li>
+  <li><a href="#section-scrollableMessageBody">scrollableMessageBody</a></li>
+  <li><a href="#section-timeout">timeout</a></li>
+  <li><a href="#section-softButtons">softButtons</a></li>
+</ul>
+
+<h3>Overview</h3>
+
+<p>Creates a full screen overlay containing a large block of formatted text that
+can be scrolled with up to 8 SoftButtons defined
+<p>
+Function Group: ScrollableMessage
+<p>
+<b>HMILevel needs to be FULL</b>
+<p></p>
+
+
+<section class="section task-group-section">
+  <h3 id="section--initWithMessage:">
+      -initWithMessage:
+  </h3>
+  
+  <p>Undocumented</p>
+
+  
+  
+  <h4>Objective-C</h4>
+  <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithMessage</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">message</span><span class="p">;</span></code></pre>
+
+  
+  <h4>Swift</h4>
+  <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+  
+  
+  
+  <h3 id="section--initWithMessage:timeout:softButtons:">
+      -initWithMessage:timeout:softButtons:
+  </h3>
+  
+  <p>Undocumented</p>
+
+  
+  
+  <h4>Objective-C</h4>
+  <pre class="highlight objective_c"><code><span class="k">-</span> <span class="p">(</span><span class="n">instancetype</span><span class="p">)</span><span class="nf">initWithMessage</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">message</span> <span class="nf">timeout</span><span class="p">:(</span><span class="n">UInt16</span><span class="p">)</span><span class="nv">timeout</span> <span class="nf">softButtons</span><span class="p">:(</span><span class="n">nullable</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n"><a href="../Classes/SDLSoftButton.html">SDLSoftButton</a></span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">softButtons</span><span class="p">;</span></code></pre>
+
+  
+  <h4>Swift</h4>
+  <pre class="highlight swift"><code><span class="nf">init</span><span class="p">(</span><span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">timeout</span><span class="p">:</span> <span class="kt">UInt16</span><span class="p">,</span> <span class="nv">softButtons</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/SDLSoftButton.html">SDLSoftButton</a></span><span class="p">]?)</span></code></pre>
+
+  
+  
+  
+  <h3 id="section-scrollableMessageBody">
+      scrollableMessageBody
+  </h3>
+  
+  <p>A Body of text that can include newlines and tabs
+@discussion A String value representing the Body of text that can include
+           newlines and tabs
+           <p>
+           <b>Notes: </b>Maxlength=500</p>
+
+  
+  
+  <h4>Objective-C</h4>
+  <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">)</span>
+    <span class="n">NSString</span> <span class="o">*</span><span class="n">_Nonnull</span> <span class="n">scrollableMessageBody</span><span class="p">;</span></code></pre>
+
+  
+  <h4>Swift</h4>
+  <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">scrollableMessageBody</span><span class="p">:</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+  
+  
+  
+  <h3 id="section-timeout">
+      timeout
+  </h3>
+  
+  <p>Gets/Sets an App defined timeout. Indicates how long of a timeout in milliseconds from the
+last action
+@discussion An Integer value representing an App defined timeout in milliseconds
+           <p>
+           <b>Notes</b>:Minval=0; Maxval=65535;Default=30000</p>
+
+  
+  
+  <h4>Objective-C</h4>
+  <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span> <span class="n">NSNumber</span><span class="o">&lt;</span><span class="n"><a href="../Protocols.html#/c:objc(pl)SDLInt">SDLInt</a></span><span class="o">&gt;</span> <span class="o">*</span><span class="n">timeout</span><span class="p">;</span></code></pre>
+
+  
+  <h4>Swift</h4>
+  <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">timeout</span><span class="p">:</span> <span class="p">(</span><span class="kt">NSNumber</span> <span class="o">&amp;</span> <span class="kt"><a href="../Protocols.html#/c:objc(pl)SDLInt">SDLInt</a></span><span class="p">)?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+  
+  
+  
+  <h3 id="section-softButtons">
+      softButtons
+  </h3>
+  
+  <p>Gets/Sets App defined SoftButtons.If omitted on supported displays, only the
+system defined <q>Close</q> SoftButton will be displayed
+@discussion A Vector<SoftButton> value representing App defined
+           SoftButtons
+           <p>
+           <b>Notes: </b>Minsize=0, Maxsize=8</p>
+
+  
+  
+  <h4>Objective-C</h4>
+  <pre class="highlight objective_c"><code><span class="k">@property</span> <span class="p">(</span><span class="n">readwrite</span><span class="p">,</span> <span class="n">strong</span><span class="p">,</span> <span class="n">nonatomic</span><span class="p">,</span> <span class="n">nullable</span><span class="p">)</span>
+    <span class="n">NSArray</span><span class="o">&lt;</span><span class="n"><a href="../Classes/SDLSoftButton.html">SDLSoftButton</a></span> <span class="o">*&gt;</span> <span class="o">*</span><span class="n">softButtons</span><span class="p">;</span></code></pre>
+
+  
+  <h4>Swift</h4>
+  <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">softButtons</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Classes/SDLSoftButton.html">SDLSoftButton</a></span><span class="p">]?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+  
+  
+  
+</section>
