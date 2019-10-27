@@ -40,6 +40,7 @@ class ConnectionTCPController: UIViewController, ProxyManagerDelegate {
     @IBAction func connectButtonWasPressed(_ sender: Any) {
         let ipAddress = ipAddressInput.text
         let port = portInput.text
+        let carsName = carName.text as! String
 
         if ipAddress != "" || port != "" {
             AppUserDefaults.shared.ipAddress = ipAddress
@@ -47,7 +48,7 @@ class ConnectionTCPController: UIViewController, ProxyManagerDelegate {
             
             switch proxyState {
             case .stopped:
-                ProxyManager.sharedManager.start(with: .tcp)
+                ProxyManager.sharedManager.start(with: .tcp, carName: carsName)
             case .searching:
                 ProxyManager.sharedManager.stopConnection()
             case .connected:

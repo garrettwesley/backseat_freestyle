@@ -34,7 +34,7 @@ class ConnectionIAPTableViewController: UITableViewController, ProxyManagerDeleg
     @IBAction func connectButtonWasPressed(_ sender: UIButton) {
         switch proxyState {
         case .stopped:
-            ProxyManager.sharedManager.start(with: .iap)
+            ProxyManager.sharedManager.start(with: .iap, carName: "IAP")
         case .searching:
             ProxyManager.sharedManager.stopConnection()
         case .connected:

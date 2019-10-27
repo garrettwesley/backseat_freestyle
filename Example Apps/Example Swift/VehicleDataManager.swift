@@ -9,15 +9,19 @@
 import Foundation
 import SmartDeviceLink
 import SmartDeviceLinkSwift
+import Firebase
 
 
 class VehicleDataManager: NSObject {
     fileprivate let sdlManager: SDLManager!
     fileprivate var refreshUIHandler: RefreshUIHandler?
+    fileprivate let carName: String
     public fileprivate(set) var vehicleOdometerData: String
 
-    init(sdlManager: SDLManager, refreshUIHandler: RefreshUIHandler? = nil) {
+    init(sdlManager: SDLManager, carName: String, refreshUIHandler: RefreshUIHandler? = nil) {
+        print("CAR NAME: \(carName)")
         self.sdlManager = sdlManager
+        self.carName = carName
         self.refreshUIHandler = refreshUIHandler
         self.vehicleOdometerData = ""
         super.init()
@@ -97,6 +101,7 @@ extension VehicleDataManager {
         
         print("NEW DATA")
         print(onVehicleData)
+        //FIREBASE
         
         vehicleOdometerData = "\(VehicleDataOdometerName): \(10) km"
         handler()
