@@ -103,18 +103,6 @@ class ConnectionTCPController: UIViewController, ProxyManagerDelegate {
                 print("Document successfully written!")
             }
         }
-        
-//        docRef.getDocuments() { (q, err) in
-//            if let err = err {
-//                print("Error getting documents: \(err)")
-//            } else {
-//                print("got some docs")
-//                for document in q!.documents {
-//                    let data = document.data()
-//                    print("CAR: \(data["name"] as! String)")
-//                    self.myCars.append(data["name"] as! String)
-//                }
-//            }
-//        }
+
     }
 }
