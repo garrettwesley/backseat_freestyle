@@ -62,26 +62,63 @@ class CarDataController: UIViewController, ProxyManagerDelegate, UITableViewDele
         print("Fetching data from firebase")
         var ref: DatabaseReference!
         ref = Database.database().reference()
-        var timearray = [Int]()
         ref.child(car_name).observe(.value, with:{ snapshot in
             print("Observing")
-            let values = snapshot.value as! NSDictionary
-            let rpm = values["rpm"] as! Int
-            let speed = values["speed"] as! Int
-            let avgspeed = values["avgspeed"] as! Int
-            let fuelLevel = values["fuelLevel"] as! Double
-            let fuelRange = values["fuelRange"] as! Double
-            let odometer = values["odometer"] as! Int
-            let gps = values["gps"] as! String
-            let externalTemperature = values["externalTemperature"] as! Int
-            self.carData[0] = "Current Speed: \(speed) km/h"
-            self.carData[1] = "Average Speed of Trip: \(avgspeed) km/h"
-            self.carData[2] = "RPM: \(rpm) rev/min"
-            self.carData[3] = "Fuel Level: \(fuelLevel * 100)%"
-            self.carData[4] = "Fuel Range: \(fuelRange) km"
-            self.carData[5] = "Total Miles: \(odometer) miles"
-            self.carData[6] = "GPS Coordinates: \(gps)"
-            self.carData[7] = "External Temperature: \(externalTemperature) degrees Celsius"
+            if snapshot.value != nil {
+                let values = snapshot.value as! [String: Any]
+                print(values)
+                if values["speed"] != nil {
+                    let speed = values["speed"] as! Int
+                    self.carData[0] = "Current Speed: \(speed) km/h"
+                }
+                if values["avgspeed"] != nil {
+                    let avgspeed = values["avgspeed"] as! Int
+                    self.carData[1] = "Average Speed of Trip: \(avgspeed) km/h"
+                }
+                if values["rpm"] != nil {
+                    let rpm = values["rpm"] as! Int
+                    self.carData[2] = "RPM: \(rpm) rev/min"
+                }
+                if values["fuelLevel"] != nil {
+                    let fuelLevel = values["fuelLevel"] as! Double
+                    self.carData[3] = "Fuel Level: \(fuelLevel * 100)%"
+                }
+                if values["fuelRange"] != nil {
+                    let fuelRange = values["fuelRange"] as! Double
+                    self.carData[4] = "Fuel Range: \(fuelRange) km"
+                }
+                if values["odometer"] != nil {
+                    let odometer = values["odometer"] as! Int
+                    self.carData[5] = "Total Miles: \(odometer) miles"
+                }
+                if values["gps"] != nil {
+                    let gps = values["gps"] as! String
+                    self.carData[6] = "GPS Coordinates: \(gps)"
+                }
+                if values["externalTemperature"] != nil {
+                    let externalTemperature = values["externalTemperature"] as! Int
+                    self.carData[7] = "External Temperature: \(externalTemperature) degrees Celsius"
+                }
+            }
+            
+//            let totalLength = speed.count
+//            print(totalLength)
+//            let speed1 = speed.index(forKey: totalLength)
+//            var summar = 0
+//            for i in speed {
+//                summar = 0
+//                summar += i.value
+//            }
+//            let avgspeed = summar / totalLength
+            
+            
+            
+        
+            
+        
+            
+            
+            
         })
         
     }
