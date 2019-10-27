@@ -1233,13 +1233,10 @@
 		6879E78623652EF900962D6D /* CarDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879E78523652EF900962D6D /* CarDataController.swift */; };
 		6879E78723652EF900962D6D /* CarDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879E78523652EF900962D6D /* CarDataController.swift */; };
 		6879E7892365354900962D6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6879E7882365354900962D6D /* GoogleService-Info.plist */; };
-		688050CF2365247C00C6AFF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 688050CE2365247C00C6AFF1 /* GoogleService-Info.plist */; };
-		688050D02365247C00C6AFF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 688050CE2365247C00C6AFF1 /* GoogleService-Info.plist */; };
 		688050D42365249500C6AFF1 /* ConnectCarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688050D12365249300C6AFF1 /* ConnectCarController.swift */; };
 		688050D52365249500C6AFF1 /* ConnectCarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688050D12365249300C6AFF1 /* ConnectCarController.swift */; };
 		688050D62365249500C6AFF1 /* MyCarsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688050D22365249400C6AFF1 /* MyCarsController.swift */; };
 		688050D72365249500C6AFF1 /* MyCarsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688050D22365249400C6AFF1 /* MyCarsController.swift */; };
-		688050D82365249500C6AFF1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688050D32365249500C6AFF1 /* ViewController.swift */; };
 		688050D92365249500C6AFF1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688050D32365249500C6AFF1 /* ViewController.swift */; };
 		688050DB236524DE00C6AFF1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 688050DA236524DD00C6AFF1 /* Main.storyboard */; };
 		688050DC236524DE00C6AFF1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 688050DA236524DD00C6AFF1 /* Main.storyboard */; };
@@ -2906,7 +2903,6 @@
 		6403C4F55A795F2449341ABF /* Pods_SmartDeviceLink_Example_ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartDeviceLink_Example_ObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6879E78523652EF900962D6D /* CarDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarDataController.swift; sourceTree = SOURCE_ROOT; };
 		6879E7882365354900962D6D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
-		688050CE2365247C00C6AFF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../backseat/backseat/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		688050D12365249300C6AFF1 /* ConnectCarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectCarController.swift; sourceTree = SOURCE_ROOT; };
 		688050D22365249400C6AFF1 /* MyCarsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCarsController.swift; sourceTree = SOURCE_ROOT; };
 		688050D32365249500C6AFF1 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -5930,7 +5926,6 @@
 		88295678207CF47F00EF056C /* Swift */ = {
 			isa = PBXGroup;
 			children = (
-				688050CE2365247C00C6AFF1 /* GoogleService-Info.plist */,
 				6879E7882365354900962D6D /* GoogleService-Info.plist */,
 				88295679207CF48C00EF056C /* SDL */,
 				8829567C207CF4AB00EF056C /* Utilities */,
@@ -6976,7 +6971,6 @@
 			files = (
 				5D9FDA9A1F2A7D3F00A495C8 /* LICENSE in Resources */,
 				688050DB236524DE00C6AFF1 /* Main.storyboard in Resources */,
-				688050CF2365247C00C6AFF1 /* GoogleService-Info.plist in Resources */,
 				5D6F7A3E1BC811FC0070BF37 /* SDLAssets.xcassets in Resources */,
 				5D616B451D552F7A00553F6B /* SDLLockScreen.storyboard in Resources */,
 			);
@@ -7007,7 +7001,6 @@
 				6879E7892365354900962D6D /* GoogleService-Info.plist in Resources */,
 				5D1FF2C7213045F2000EB9B4 /* Images.xcassets in Resources */,
 				5D1FF2F5213047B3000EB9B4 /* LaunchScreen.xib in Resources */,
-				688050D02365247C00C6AFF1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7685,7 +7678,6 @@
 				8880D24822205B1B00964F6A /* SDLNavigationInstruction.m in Sources */,
 				5D61FD7A1A84238C00846EE7 /* SDLScreenParams.m in Sources */,
 				1EAA47122033FE80000FE74B /* SDLStationIDNumber.m in Sources */,
-				688050D82365249500C6AFF1 /* ViewController.swift in Sources */,
 				5D61FC831A84238C00846EE7 /* SDLDeviceInfo.m in Sources */,
 				DA318C201DD0F06C00C035AC /* NSMutableDictionary+Store.m in Sources */,
 				5D7F87EC1CE3C1A1002DD7C4 /* SDLDeleteFileOperation.m in Sources */,
