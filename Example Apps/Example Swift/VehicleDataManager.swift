@@ -43,7 +43,6 @@ extension VehicleDataManager {
         subscribeToVehicleData.rpm = true as NSNumber & SDLBool
         subscribeToVehicleData.fuelLevel = true as NSNumber & SDLBool
         subscribeToVehicleData.fuelRange = true as NSNumber & SDLBool
-        subscribeToVehicleData.tirePressure = true as NSNumber & SDLBool
         subscribeToVehicleData.externalTemperature = true as NSNumber & SDLBool
         sdlManager.send(request: subscribeToVehicleData) { [unowned self] (request, response, error) in
             guard let result = response?.resultCode else { return }
@@ -111,7 +110,7 @@ extension VehicleDataManager {
             updates["odometer"] = data.odometer
         }
         if data.gps != nil {
-            updates["gps"] = data.gps
+            updates["gps"] = "\(data.gps!.latitudeDegrees)  \(data.gps!.longitudeDegrees)"
         }
         if data.fuelRange != nil {
             updates["fuelRange"] = data.fuelRange
