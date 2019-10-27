@@ -10,6 +10,7 @@ import Foundation
 import SmartDeviceLink
 import SmartDeviceLinkSwift
 import Firebase
+import FirebaseDatabase
 
 
 class VehicleDataManager: NSObject {
@@ -98,9 +99,12 @@ extension VehicleDataManager {
         guard let handler = refreshUIHandler, let onVehicleData = notification.notification as? SDLOnVehicleData else {
             return
         }
+        FirebaseApp.configure()
         
-        print("NEW DATA")
-        print(onVehicleData)
+        print("NEW DATA------------------------")
+        print(onVehicleData.speed)
+        var carNameSpeeds = Database.database().reference().child(self.carName );
+        print(carNameSpeeds)
         //FIREBASE
         
         vehicleOdometerData = "\(VehicleDataOdometerName): \(10) km"
