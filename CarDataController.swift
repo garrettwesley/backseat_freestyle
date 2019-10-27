@@ -62,16 +62,26 @@ class CarDataController: UIViewController, ProxyManagerDelegate, UITableViewDele
         print("Fetching data from firebase")
         var ref: DatabaseReference!
         ref = Database.database().reference()
-        
+        var timearray = [Int]()
         ref.child(car_name).observe(.value, with:{ snapshot in
             print("Observing")
             let values = snapshot.value as! NSDictionary
             let rpm = values["rpm"] as! Int
             let speed = values["speed"] as! Int
             let fuelLevel = values["fuelLevel"] as! Double
+            let fuelRange = values["fuelRange"] as! Double
+            let odometer = values["odometer"] as! Int
+            let gps = values["gps"] as! String
+            let tirePressure = values["tirePressure"] as! Double
+            let externalTemperature = values["externalTemperature"] as! Int
             self.carData[0] = "Current Speed: \(speed) km/h"
             self.carData[1] = "RPM: \(rpm) rev/min"
             self.carData[2] = "Fuel Level: \(fuelLevel * 100)%"
+            self.carData[3] = "Fuel Range: \(fuelRange) km"
+            self.carData[4] = "Total Miles: \(odometer) miles"
+            self.carData[5] = "GPS Coordinates: \(gps)"
+            self.carData[6] = "Tire Pressure: \(tirePressure) psi"
+            self.carData[7] = "External Temperature: \(externalTemperature) degrees Celsius"
         })
         
     }

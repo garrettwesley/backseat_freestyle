@@ -95,16 +95,35 @@ extension VehicleDataManager {
     ///
     /// - Parameter notification: A SDLOnVehicleData notification
     @objc func vehicleDataNotification(_ notification: SDLRPCNotificationNotification) {
-        guard let handler = refreshUIHandler, let onVehicleData = notification.notification as? SDLOnVehicleData else {
+        guard let handler = refreshUIHandler, let data = notification.notification as? SDLOnVehicleData else {
             return
         }
-        FirebaseApp.configure()
         
         print("NEW DATA------------------------")
-        Database.database().reference().child(self.carName ).setValue(["Fule": onVehicleData.speed ]);
-        //FIREBASE
+        var updates: [String: Any] = [:]
+        if data.speed != nil {
+            updates["speed"] = data.speed
+        }
+        if data.rpm != nil {
+            updates["rpm"] = data.rpm
+        }
+        if data.odometer != nil {
+            updates["odometer"] = data.odometer
+        }
+        if data.gps != nil {
+            updates["gps"] = data.gps
+        }
+        if data.fuelRange != nil {
+            updates["fuelRange"] = data.fuelRange
+        }
+        if data.fuelLevel != nil {
+            updates["fuelLevel"] = data.fuelLevel
+        }
+        if data.externalTemperature != nil {
+            updates["externalTemperature"] = data.externalTemperature
+        }
         
-        vehicleOdometerData = "\(VehicleDataOdometerName): \(10) km"
+        Database.database().reference().root.child(carName).updateChildValues(updates)
         handler()
     }
     
