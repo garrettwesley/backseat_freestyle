@@ -102,9 +102,7 @@ extension VehicleDataManager {
         FirebaseApp.configure()
         
         print("NEW DATA------------------------")
-        print(onVehicleData.speed)
-        var carNameSpeeds = Database.database().reference().child(self.carName );
-        print(carNameSpeeds)
+        Database.database().reference().child(self.carName ).setValue(["Fule": onVehicleData.speed ]);
         //FIREBASE
         
         vehicleOdometerData = "\(VehicleDataOdometerName): \(10) km"
