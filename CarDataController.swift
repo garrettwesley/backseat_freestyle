@@ -9,16 +9,26 @@
 import UIKit
 import Firebase
 import FirebaseDatabase
+import SnapKit
 
-class CarDataController: UIViewController, ProxyManagerDelegate, UITableViewDelegate, UITableViewDataSource {
+class CarDataController: UIViewController, ProxyManagerDelegate {
     var proxyState = ProxyState.stopped
-    private var dataTable: UITableView!
+    
+    lazy var collectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        let cv = UICollectionView(frame: self.view.bounds, collectionViewLayout: flowLayout)
+        cv.register(DataCell.self, forCellWithReuseIdentifier: "DataCell")
+        cv.delegate = self
+        cv.dataSource = self
+        cv.alwaysBounceVertical = true
+        return cv
+    }()
 
     @IBOutlet weak var connectButton: UIBarButtonItem!
     
     var carData = ["", "", "" ,"" ,"" ,"" ,"", ""] {
         didSet {
-            dataTable.reloadData()
+            collectionView.reloadData()
         }
     }
     var car_name = ""
@@ -32,16 +42,12 @@ class CarDataController: UIViewController, ProxyManagerDelegate, UITableViewDele
         
         ProxyManager.sharedManager.delegate = self
         
-        dataTable = UITableView()
-        dataTable.register(UITableViewCell.self, forCellReuseIdentifier: "DataCell")
-        dataTable.dataSource = self
-        dataTable.delegate = self
-        view.addSubview(dataTable)
-        
-        dataTable.snp.makeConstraints { (make) in
-            make.edges.equalTo(view)
+        collectionView.snp.makeConstraints { make in
+            if #available(iOS 11.0, *) {
+                make.edges.equalTo(view.safeAreaLayoutGuide)
+            }
         }
-        
+
         let db = Firestore.firestore();
         let docRef = db.collection("user_UUID").document(user_uuid).collection("cars").document(car_name)
                 
@@ -50,7 +56,6 @@ class CarDataController: UIViewController, ProxyManagerDelegate, UITableViewDele
                 self.ipAddress = document.get("ipAddress") as! String
                 self.port = document.get("port") as! String
                 self.speed = document.get("speed") as! Int
-                self.initButton()
             } else {
                 print("Document does not exist")
             }
@@ -109,7 +114,7 @@ class CarDataController: UIViewController, ProxyManagerDelegate, UITableViewDele
 //                summar = 0
 //                summar += i.value
 //            }
-//            let avgspeed = summar / totalLength 
+//            let avgspeed = summar / totalLength
         })
         
     }
@@ -142,10 +147,6 @@ class CarDataController: UIViewController, ProxyManagerDelegate, UITableViewDele
         super.didReceiveMemoryWarning()
     }
 
-    func initButton() {
-        self.connectButton.title = "Connect"
-        //self.connectButton.tintColor = "Orange"
-    }
     
     @IBAction func connectButtonWasPressed(_ sender: Any) {
         if self.ipAddress != "" || self.port != "" {
@@ -166,19 +167,72 @@ class CarDataController: UIViewController, ProxyManagerDelegate, UITableViewDele
             self.present(alertMessage, animated: true, completion: nil)
         }
     }
-        
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
+}
+
+
+class DataCell: UICollectionViewCell {
+    let valueLabel: UILabel = {
+        let title = UILabel()
+        title.textAlignment = .center
+        title.font = .systemFont(ofSize: 30)
+        title.textColor = .blue
+        return title
+    }()
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    let keyLabel: UILabel = {
+        let date = UILabel()
+        date.textAlignment = .left
+        date.font = .systemFont(ofSize: 14)
+        date.textColor = .gray
+        return date
+    }()
+    
+    var key: String? {
+        didSet {
+            display()
+        }
+    }
+    var value: String?
+    
+    func display() {
+        contentView.addSubview(valueLabel)
+        contentView.addSubview(keyLabel)
+        
+        setupConstraints()
+    }
+
+    func setupConstraints() {
+        keyLabel.snp.makeConstraints { make in
+            make.top.width.equalTo(contentView)
+            make.height.equalTo(20)
+        }
+        valueLabel.snp.makeConstraints { make in
+            make.bottom.left.right.equalTo(contentView)
+            make.top.equalTo(keyLabel.snp.bottom)
+        }
+    }
+}
+
+extension CarDataController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return carData.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = dataTable.dequeueReusableCell(withIdentifier: "DataCell", for: indexPath)
-        cell.textLabel?.text = carData[indexPath.row]
+    internal func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DataCell", for: indexPath as IndexPath) as? DataCell else {
+            fatalError("Cell not exists in storyboard")
+        }
+        
+        cell.key = "speed"
+        cell.value = String(77)
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let padding: CGFloat =  50
+        let collectionViewSize = collectionView.frame.size.width - padding
+        
+        return CGSize(width: collectionViewSize / 2, height: collectionViewSize / 2)
+    }
 }
