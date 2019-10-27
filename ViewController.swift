@@ -29,7 +29,7 @@ class ViewController: UIViewController {
             make.width.equalTo(view)
             make.height.equalTo(100)
         }
-        typewriterLabel.setTextWithTypeAnimation(typedText: "your eyes on the road", characterDelay: 100)
+        typewriterLabel.setTextWithTypeAnimation(typedText: "Your Eyes On the Road", characterDelay: 100)
         
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true

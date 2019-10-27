@@ -1233,8 +1233,6 @@
 		6879E78623652EF900962D6D /* CarDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879E78523652EF900962D6D /* CarDataController.swift */; };
 		6879E78723652EF900962D6D /* CarDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879E78523652EF900962D6D /* CarDataController.swift */; };
 		6879E7892365354900962D6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6879E7882365354900962D6D /* GoogleService-Info.plist */; };
-		688050CF2365247C00C6AFF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 688050CE2365247C00C6AFF1 /* GoogleService-Info.plist */; };
-		688050D02365247C00C6AFF1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 688050CE2365247C00C6AFF1 /* GoogleService-Info.plist */; };
 		688050D42365249500C6AFF1 /* ConnectCarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688050D12365249300C6AFF1 /* ConnectCarController.swift */; };
 		688050D52365249500C6AFF1 /* ConnectCarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688050D12365249300C6AFF1 /* ConnectCarController.swift */; };
 		688050D62365249500C6AFF1 /* MyCarsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688050D22365249400C6AFF1 /* MyCarsController.swift */; };
@@ -2906,7 +2904,6 @@
 		6403C4F55A795F2449341ABF /* Pods_SmartDeviceLink_Example_ObjC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SmartDeviceLink_Example_ObjC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6879E78523652EF900962D6D /* CarDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarDataController.swift; sourceTree = SOURCE_ROOT; };
 		6879E7882365354900962D6D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
-		688050CE2365247C00C6AFF1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../backseat/backseat/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		688050D12365249300C6AFF1 /* ConnectCarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectCarController.swift; sourceTree = SOURCE_ROOT; };
 		688050D22365249400C6AFF1 /* MyCarsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyCarsController.swift; sourceTree = SOURCE_ROOT; };
 		688050D32365249500C6AFF1 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -5930,7 +5927,6 @@
 		88295678207CF47F00EF056C /* Swift */ = {
 			isa = PBXGroup;
 			children = (
-				688050CE2365247C00C6AFF1 /* GoogleService-Info.plist */,
 				6879E7882365354900962D6D /* GoogleService-Info.plist */,
 				88295679207CF48C00EF056C /* SDL */,
 				8829567C207CF4AB00EF056C /* Utilities */,
@@ -6839,7 +6835,6 @@
 				5D61FA231A84237100846EE7 /* Frameworks */,
 				5D61FA241A84237100846EE7 /* Resources */,
 				5DA22C861D0745B000245F5F /* CopyFiles */,
-				E0F15921606B67C618A4B96D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -6976,7 +6971,6 @@
 			files = (
 				5D9FDA9A1F2A7D3F00A495C8 /* LICENSE in Resources */,
 				688050DB236524DE00C6AFF1 /* Main.storyboard in Resources */,
-				688050CF2365247C00C6AFF1 /* GoogleService-Info.plist in Resources */,
 				5D6F7A3E1BC811FC0070BF37 /* SDLAssets.xcassets in Resources */,
 				5D616B451D552F7A00553F6B /* SDLLockScreen.storyboard in Resources */,
 			);
@@ -7007,7 +7001,6 @@
 				6879E7892365354900962D6D /* GoogleService-Info.plist in Resources */,
 				5D1FF2C7213045F2000EB9B4 /* Images.xcassets in Resources */,
 				5D1FF2F5213047B3000EB9B4 /* LaunchScreen.xib in Resources */,
-				688050D02365247C00C6AFF1 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7029,10 +7022,8 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SmartDeviceLink-Example-ObjC/Pods-SmartDeviceLink-Example-ObjC-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SmartDeviceLink-Example-ObjC/Pods-SmartDeviceLink-Example-ObjC-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
@@ -7044,8 +7035,6 @@
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
@@ -7059,7 +7048,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartDeviceLink-Example-ObjC/Pods-SmartDeviceLink-Example-ObjC-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SmartDeviceLink-Example-ObjC/Pods-SmartDeviceLink-Example-ObjC-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		31EE67E0EA60466771258E8E /* [CP] Check Pods Manifest.lock */ = {
@@ -7172,53 +7161,13 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E0F15921606B67C618A4B96D /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SmartDeviceLinkTests/Pods-SmartDeviceLinkTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-C++/grpcpp.framework",
-				"${BUILT_PRODUCTS_DIR}/gRPC-Core/grpc.framework",
-				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpcpp.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/grpc.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartDeviceLinkTests/Pods-SmartDeviceLinkTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		EC10D8E849F680B15A5BA1CF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SmartDeviceLink-Example-Swift/Pods-SmartDeviceLink-Example-Swift-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SmartDeviceLink-Example-Swift/Pods-SmartDeviceLink-Example-Swift-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/BoringSSL-GRPC/openssl_grpc.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
@@ -7230,8 +7179,6 @@
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/openssl_grpc.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
@@ -7245,7 +7192,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SmartDeviceLink-Example-Swift/Pods-SmartDeviceLink-Example-Swift-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SmartDeviceLink-Example-Swift/Pods-SmartDeviceLink-Example-Swift-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
