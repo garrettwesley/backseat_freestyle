@@ -13,9 +13,24 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
+    var typewriterLabel: UILabel = {
+        var l = UILabel()
+        if #available(iOS 8.2, *) {
+            l.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+        }
+        return l
+    }()
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.addSubview(typewriterLabel)
+        typewriterLabel.snp.makeConstraints { (make) in
+            make.top.left.equalTo(view).offset(20)
+            make.width.equalTo(view)
+            make.height.equalTo(100)
+        }
+        typewriterLabel.setTextWithTypeAnimation(typedText: "your eyes on the road", characterDelay: 100)
+        
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
         }
@@ -55,3 +70,25 @@ class ViewController: UIViewController {
     }
 }
 
+
+
+extension UILabel {
+    func setTextWithTypeAnimation(typedText: String, characterDelay: TimeInterval = 5.0) {
+        text = ""
+        var writingTask: DispatchWorkItem?
+        writingTask = DispatchWorkItem { [weak weakSelf = self] in
+            for character in typedText {
+                DispatchQueue.main.async {
+                    weakSelf?.text!.append(character)
+                }
+                Thread.sleep(forTimeInterval: characterDelay/100)
+            }
+        }
+        
+        if let task = writingTask {
+            let queue = DispatchQueue(label: "typespeed", qos: DispatchQoS.userInteractive)
+            queue.asyncAfter(deadline: .now() + 0.05, execute: task)
+        }
+    }
+    
+}
