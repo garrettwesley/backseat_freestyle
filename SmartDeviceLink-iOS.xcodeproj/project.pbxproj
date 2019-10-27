@@ -1230,7 +1230,6 @@
 		5DF40B26208FA7DE00DD6FDA /* SDLMenuManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF40B25208FA7DE00DD6FDA /* SDLMenuManagerSpec.m */; };
 		5DF40B28208FDA9700DD6FDA /* SDLVoiceCommandManagerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DF40B27208FDA9700DD6FDA /* SDLVoiceCommandManagerSpec.m */; };
 		5DFFB9151BD7C89700DB3F04 /* SDLConnectionManagerType.h in Headers */ = {isa = PBXBuildFile; fileRef = 5DFFB9141BD7C89700DB3F04 /* SDLConnectionManagerType.h */; };
-		6879E78623652EF900962D6D /* CarDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879E78523652EF900962D6D /* CarDataController.swift */; };
 		6879E78723652EF900962D6D /* CarDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6879E78523652EF900962D6D /* CarDataController.swift */; };
 		6879E7892365354900962D6D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6879E7882365354900962D6D /* GoogleService-Info.plist */; };
 		688050D42365249500C6AFF1 /* ConnectCarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688050D12365249300C6AFF1 /* ConnectCarController.swift */; };
@@ -7440,7 +7439,6 @@
 				5D75961222972FCA0013207C /* SDLSystemCapabilityObserver.m in Sources */,
 				884E702021FB983F008D53BA /* SDLAppServiceManifest.m in Sources */,
 				5D61FD961A84238C00846EE7 /* SDLShowResponse.m in Sources */,
-				6879E78623652EF900962D6D /* CarDataController.swift in Sources */,
 				5D61FD981A84238C00846EE7 /* SDLSingleTireStatus.m in Sources */,
 				1EB59CA8202D946500343A61 /* SDLMassageModeData.m in Sources */,
 				8881AFB32225DED900EA870B /* SDLSetCloudAppPropertiesResponse.m in Sources */,

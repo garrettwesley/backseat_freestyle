@@ -32,9 +32,16 @@ class VehicleDataManager: NSObject {
 extension VehicleDataManager {
     /// Subscribes to odometer data. You must subscribe to a notification with name `SDLDidReceiveVehicleData` to get the new data when the odometer data changes.
     func subscribeToVehicleOdometer() {
-        let subscribeToVehicleOdometer = SDLSubscribeVehicleData()
-        subscribeToVehicleOdometer.odometer = true as NSNumber & SDLBool
-        sdlManager.send(request: subscribeToVehicleOdometer) { [unowned self] (request, response, error) in
+        let subscribeToVehicleData = SDLSubscribeVehicleData()
+        subscribeToVehicleData.speed = true as NSNumber & SDLBool
+        subscribeToVehicleData.odometer = true as NSNumber & SDLBool
+        subscribeToVehicleData.gps = true as NSNumber & SDLBool
+        subscribeToVehicleData.rpm = true as NSNumber & SDLBool
+        subscribeToVehicleData.fuelLevel = true as NSNumber & SDLBool
+        subscribeToVehicleData.fuelRange = true as NSNumber & SDLBool
+        subscribeToVehicleData.tirePressure = true as NSNumber & SDLBool
+        subscribeToVehicleData.externalTemperature = true as NSNumber & SDLBool
+        sdlManager.send(request: subscribeToVehicleData) { [unowned self] (request, response, error) in
             guard let result = response?.resultCode else { return }
 
             if error != nil {
@@ -84,11 +91,14 @@ extension VehicleDataManager {
     ///
     /// - Parameter notification: A SDLOnVehicleData notification
     @objc func vehicleDataNotification(_ notification: SDLRPCNotificationNotification) {
-        guard let handler = refreshUIHandler, let onVehicleData = notification.notification as? SDLOnVehicleData, let odometer = onVehicleData.odometer else {
+        guard let handler = refreshUIHandler, let onVehicleData = notification.notification as? SDLOnVehicleData else {
             return
         }
-
-        vehicleOdometerData = "\(VehicleDataOdometerName): \(odometer) km"
+        
+        print("NEW DATA")
+        print(onVehicleData)
+        
+        vehicleOdometerData = "\(VehicleDataOdometerName): \(10) km"
         handler()
     }
 
