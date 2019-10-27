@@ -109,16 +109,7 @@ class CarDataController: UIViewController, ProxyManagerDelegate, UITableViewDele
 //                summar = 0
 //                summar += i.value
 //            }
-//            let avgspeed = summar / totalLength
-            
-            
-            
-        
-            
-        
-            
-            
-            
+//            let avgspeed = summar / totalLength 
         })
         
     }

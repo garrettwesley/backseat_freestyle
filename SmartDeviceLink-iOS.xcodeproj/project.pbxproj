@@ -468,9 +468,7 @@
 		5D1FF2E521304761000EB9B4 /* AppUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1FF2E221304761000EB9B4 /* AppUserDefaults.swift */; };
 		5D1FF2E621304761000EB9B4 /* ProxyManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1FF2E321304761000EB9B4 /* ProxyManagerDelegate.swift */; };
 		5D1FF2E721304761000EB9B4 /* TextValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1FF2E421304761000EB9B4 /* TextValidator.swift */; };
-		5D1FF2EB2130479C000EB9B4 /* ConnectionContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1FF2E82130479C000EB9B4 /* ConnectionContainerViewController.swift */; };
 		5D1FF2EC2130479C000EB9B4 /* ConnectionTCPTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1FF2E92130479C000EB9B4 /* ConnectionTCPTableViewController.swift */; };
-		5D1FF2ED2130479C000EB9B4 /* ConnectionIAPTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1FF2EA2130479C000EB9B4 /* ConnectionIAPTableViewController.swift */; };
 		5D1FF2F5213047B3000EB9B4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D1FF2F4213047B2000EB9B4 /* LaunchScreen.xib */; };
 		5D1FF2F8213047C1000EB9B4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1FF2F7213047C1000EB9B4 /* AppDelegate.swift */; };
 		5D293AFE1FE078A9000CBD7E /* SDLCarWindowViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D293AFC1FE078A9000CBD7E /* SDLCarWindowViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -2116,9 +2114,7 @@
 		5D1FF2E221304761000EB9B4 /* AppUserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppUserDefaults.swift; path = "Example Apps/Example Swift/AppUserDefaults.swift"; sourceTree = SOURCE_ROOT; };
 		5D1FF2E321304761000EB9B4 /* ProxyManagerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProxyManagerDelegate.swift; path = "Example Apps/Example Swift/ProxyManagerDelegate.swift"; sourceTree = SOURCE_ROOT; };
 		5D1FF2E421304761000EB9B4 /* TextValidator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TextValidator.swift; path = "Example Apps/Example Swift/TextValidator.swift"; sourceTree = SOURCE_ROOT; };
-		5D1FF2E82130479C000EB9B4 /* ConnectionContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionContainerViewController.swift; path = "Example Apps/Example Swift/ConnectionContainerViewController.swift"; sourceTree = SOURCE_ROOT; };
 		5D1FF2E92130479C000EB9B4 /* ConnectionTCPTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionTCPTableViewController.swift; path = "Example Apps/Example Swift/ConnectionTCPTableViewController.swift"; sourceTree = SOURCE_ROOT; };
-		5D1FF2EA2130479C000EB9B4 /* ConnectionIAPTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ConnectionIAPTableViewController.swift; path = "Example Apps/Example Swift/ConnectionIAPTableViewController.swift"; sourceTree = SOURCE_ROOT; };
 		5D1FF2F4213047B2000EB9B4 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchScreen.xib; path = "Example Apps/Example Swift/LaunchScreen.xib"; sourceTree = SOURCE_ROOT; };
 		5D1FF2F6213047C1000EB9B4 /* SmartDeviceLink-Example-Swift-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SmartDeviceLink-Example-Swift-Bridging-Header.h"; path = "Example Apps/Example Swift/SmartDeviceLink-Example-Swift-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		5D1FF2F7213047C1000EB9B4 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Example Apps/Example Swift/AppDelegate.swift"; sourceTree = SOURCE_ROOT; };
@@ -5963,8 +5959,6 @@
 			children = (
 				5D1FF2F4213047B2000EB9B4 /* LaunchScreen.xib */,
 				88A0AA5F207CFEA60075132C /* Connection */,
-				5D1FF2E82130479C000EB9B4 /* ConnectionContainerViewController.swift */,
-				5D1FF2EA2130479C000EB9B4 /* ConnectionIAPTableViewController.swift */,
 				5D1FF2E92130479C000EB9B4 /* ConnectionTCPTableViewController.swift */,
 				688050D12365249300C6AFF1 /* ConnectCarController.swift */,
 				6879E78523652EF900962D6D /* CarDataController.swift */,
@@ -8185,10 +8179,8 @@
 				5D1FF2C4213045EB000EB9B4 /* AppConstants.m in Sources */,
 				5D1FF2DA21304746000EB9B4 /* ButtonManager.swift in Sources */,
 				5D1FF2DC21304746000EB9B4 /* AlertManager.swift in Sources */,
-				5D1FF2EB2130479C000EB9B4 /* ConnectionContainerViewController.swift in Sources */,
 				5D1FF2E021304746000EB9B4 /* MenuManager.swift in Sources */,
 				5D1FF2DF21304746000EB9B4 /* PerformInteractionManager.swift in Sources */,
-				5D1FF2ED2130479C000EB9B4 /* ConnectionIAPTableViewController.swift in Sources */,
 				688050D72365249500C6AFF1 /* MyCarsController.swift in Sources */,
 				5D1FF2DD21304746000EB9B4 /* RPCPermissionsManager.swift in Sources */,
 				688050D52365249500C6AFF1 /* ConnectCarController.swift in Sources */,

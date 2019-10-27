@@ -40,7 +40,6 @@ class MyCarsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
 
     override func viewDidLoad() {
-        print("User uuid: \(user_uuid)")
         title = "My Cars"
         navigationItem.setHidesBackButton(true, animated:true)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addTapped))
@@ -49,6 +48,7 @@ class MyCarsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         carTable.register(UITableViewCell.self, forCellReuseIdentifier: "CarCell")
         carTable.dataSource = self
         carTable.delegate = self
+        carTable.backgroundColor = UIColor(red: 0.96, green: 0.97, blue: 0.98, alpha: 1.0)
         view.addSubview(carTable)
         
         carTable.snp.makeConstraints { (make) in
@@ -77,6 +77,7 @@ class MyCarsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = carTable.dequeueReusableCell(withIdentifier: "CarCell", for: indexPath)
         cell.textLabel?.text = myCars[indexPath.row]
+        cell.backgroundColor = UIColor(red: 0.96, green: 0.97, blue: 0.98, alpha: 1.0)
         return cell
     }
     
@@ -88,6 +89,18 @@ class MyCarsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         if editingStyle == .delete {
             myCars.remove(at: indexPath.row)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // this will turn on `masksToBounds` just before showing the cell
+        cell.backgroundColor = UIColor(red: 0.96, green: 0.97, blue: 0.98, alpha: 1.0)
     }
      
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
