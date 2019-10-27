@@ -30,9 +30,10 @@ class MyCarsController: UIViewController, UITableViewDelegate, UITableViewDataSo
             } else {
                 print("got some docs")
                 for document in q!.documents {
-                    let data = document.data()
-                    print("CAR: \(data["name"] as! String)")
-                    self.myCars.append(data["name"] as! String)
+                    let name = document.data()["name"] as! String
+                    if !self.myCars.contains(name) {
+                        self.myCars.append(name)
+                    }
                 }
             }
         }
@@ -54,6 +55,9 @@ class MyCarsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         carTable.snp.makeConstraints { (make) in
             make.edges.equalTo(view)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         queryCars()
     }
     
@@ -99,7 +103,10 @@ class MyCarsController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 destination.car_name = name
             }
         } else if segue.identifier == "connectToCar" {
-            print("going to car")
+            if let destination = segue.destination as? ConnectionTCPController {
+                destination.user_uuid = user_uuid
+            }
         }
     }
+    
 }

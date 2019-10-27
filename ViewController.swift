@@ -61,11 +61,7 @@ class ViewController: UIViewController {
         if #available(iOS 8.2, *) {
             typewriterLabel.font = UIFont.systemFont(ofSize: 21, weight: .bold)
         }
-<<<<<<< HEAD
-        typewriterLabel.setTextWithTypeAnimation(typedText: "Your Eyes On the Road", characterDelay: 100)
-=======
         typewriterLabel.setTextWithTypeAnimation(typedText: "your eyes on the road")
->>>>>>> 9b79ffdd7f07f56c5149f804ece03b4757d3facc
         
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true

@@ -5,12 +5,16 @@
 //  Copyright © 2017 smartdevicelink. All rights reserved.
 //
 import UIKit
+import Firebase
 
 class ConnectionTCPController: UIViewController, ProxyManagerDelegate {
     
+    @IBOutlet weak var carName: UITextField!
     @IBOutlet weak var ipAddressInput: UITextField!
     @IBOutlet weak var portInput: UITextField!
     @IBOutlet weak var connectButton: UIButton!
+    var user_uuid = ""
+    
     
     var proxyState = ProxyState.stopped
 
@@ -71,6 +75,8 @@ class ConnectionTCPController: UIViewController, ProxyManagerDelegate {
         case .connected:
             newColor = UIColor.green
             newTitle = "Disconnect"
+            print("should've connected");
+            addCars();
         }
         
         if (newColor != nil) || (newTitle != nil) {
@@ -79,5 +85,35 @@ class ConnectionTCPController: UIViewController, ProxyManagerDelegate {
                 self?.connectButton.setTitleColor(.orange, for: .normal)
             })
         }
+    }
+    
+    func addCars() {
+        print("querying cars");
+        let db = Firestore.firestore();
+        db.collection("user_UUID").document(user_uuid).collection("cars").document(carName.text!).setData([
+            "name": carName.text!,
+            "ipAddress": ipAddressInput.text!,
+            "port": portInput.text!,
+            "speed": 100
+        ]) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully written!")
+            }
+        }
+        
+//        docRef.getDocuments() { (q, err) in
+//            if let err = err {
+//                print("Error getting documents: \(err)")
+//            } else {
+//                print("got some docs")
+//                for document in q!.documents {
+//                    let data = document.data()
+//                    print("CAR: \(data["name"] as! String)")
+//                    self.myCars.append(data["name"] as! String)
+//                }
+//            }
+//        }
     }
 }
