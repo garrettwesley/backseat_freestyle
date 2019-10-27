@@ -104,14 +104,12 @@ extension VehicleDataManager {
         var updates: [String: Any] = [:]
         var update_count: [String: Any] = [:]
         var count = 0
-        var first = 0
-        var second = 0
         
         ref.child(carName).observeSingleEvent(of : .value, with:{ snapshot in
         print("Observing")
         if !(snapshot.value is NSNull) {
             let values = snapshot.value as! [String: Any]
-            if (values["count"] != nil){
+            if (values["count"] != nil && data.speed != nil){
                 count = values["count"] as! Int
                 count += 1
                 updates["count"] = count
@@ -122,18 +120,18 @@ extension VehicleDataManager {
             
             if data.speed != nil {
                 update_count[String(count)] = data.speed
-                print("THISSHOULDBEUPDATING")
-                print(count)
-                print(data.speed)
                 ref.root.child(self.carName).child("speed").updateChildValues(update_count)
+            }
+            if values["mpg"] != nil {
+                update_count[String(count)] = values["mpg"]
+                ref.root.child(self.carName).child("mpg").updateChildValues(update_count)
             }
             if data.rpm != nil {
                 updates["rpm"] = data.rpm
             }
             if data.odometer != nil {
-                if first == 0 {
+                if  values["odometer"] == nil {
                     updates["firstod"] = data.odometer
-                    first += 1
                 }
                 updates["odometer"] = data.odometer
             }
@@ -144,15 +142,15 @@ extension VehicleDataManager {
                 updates["fuelRange"] = data.fuelRange
             }
             if data.fuelLevel != nil {
-                if second == 0 {
+                if values["fuelLevel"] == nil {
                     updates["firstfl"] = data.fuelLevel
-                    second += 1
                 }
                 updates["fuelLevel"] = data.fuelLevel
             }
             if data.externalTemperature != nil {
                 updates["externalTemperature"] = data.externalTemperature
             }
+        
             Database.database().reference().root.child(self.carName).updateChildValues(updates)
             handler()
             

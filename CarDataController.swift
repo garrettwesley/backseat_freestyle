@@ -14,7 +14,7 @@ import SnapKit
 class CarDataController: UIViewController, ProxyManagerDelegate {
     var proxyState = ProxyState.stopped
     let row = UIView()
-    var keys = ["speed", "avg speed", "rpm", "fuel level", "fuel range", "odometer", "coordinates", "temperature"]
+    var keys = ["speed", "avg speed", "rpm", "fuel level", "fuel range", "odometer", "coordinates", "temperature", "mpg"]
     
     lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -29,7 +29,7 @@ class CarDataController: UIViewController, ProxyManagerDelegate {
 
     @IBOutlet weak var connectButton: UIBarButtonItem!
     
-    var carData = ["", "", "" ,"" ,"" ,"" ,"", ""] {
+    var carData = ["", "", "" ,"" ,"" ,"" ,"", "", ""] {
         didSet {
             collectionView.reloadData()
         }
@@ -84,50 +84,55 @@ class CarDataController: UIViewController, ProxyManagerDelegate {
         ref.child(car_name).observe(.value, with:{ snapshot in
             if !(snapshot.value is NSNull) {
                 let values = snapshot.value as! [String: Any]
-                var x = 0
                 if values["speed"] != nil {
                     let speed = values["speed"] as! NSArray
                     let totalLength = speed.count
                     let speed1 = speed[totalLength - 1]
-                    self.carData[x] = "\(speed1) km/h"
-                    x += 1
+                    self.carData[0] = "\(speed1) km/h"
                     var summar = 0
                     for i in speed {
                         summar += i as! Int
                     }
                     let avgspeed = summar / totalLength
-                    self.carData[x] = "\(avgspeed) km/h"
-                    x += 1
+                    self.carData[1] = "\(avgspeed) km/h"
                 }
                 if values["rpm"] != nil {
                     let rpm = values["rpm"] as! Int
-                    self.carData[x] = "\(rpm) rev/min"
-                    x += 1
+                    self.carData[2] = "\(rpm) rev/min"
                 }
                 if values["fuelLevel"] != nil {
                     let fuelLevel = values["fuelLevel"] as! Double
-                    self.carData[x] = "\(fuelLevel)%"
-                    x += 1
+                    self.carData[3] = "\(fuelLevel)%"
                 }
                 if values["fuelRange"] != nil {
                     let fuelRange = values["fuelRange"] as! Double
-                    self.carData[x] = "\(fuelRange) km"
-                    x += 1
+                    self.carData[4] = "\(fuelRange) km"
                 }
                 if values["odometer"] != nil {
                     let odometer = values["odometer"] as! Int
-                    self.carData[x] = "\(odometer) miles"
-                    x += 1
+                    self.carData[5] = "\(odometer) miles"
                 }
                 if values["gps"] != nil {
                     let gps = values["gps"] as! String
-                    self.carData[x] = "\(gps)"
-                    x += 1
+                    self.carData[6] = "\(gps)"
                 }
                 if values["externalTemperature"] != nil {
                     let externalTemperature = values["externalTemperature"] as! Int
-                    self.carData[x] = "\(externalTemperature) C"
-                    x += 1
+                    self.carData[7] = "\(externalTemperature) C"
+                }
+                if values["fuelLevel"] != nil && values["odometer"] != nil && values["firstfl"] != nil && values["firstod"] != nil {
+                    let odometer = values["odometer"] as! Int
+                    let fuelLevel = values["fuelLevel"] as! Int
+                    let firstod = values["firstod"] as! Int
+                    let firstfl = values["firstfl"] as! Int
+                    if (firstfl - fuelLevel != 0) {
+                        let mpg = (odometer - firstod) / (firstfl - fuelLevel)
+                        self.carData[8] = "\(mpg) mpg"
+                    }
+                }
+                if values["mpg"] != nil {
+                    let mpg = values["mpg"] as! Double
+                    self.carData[8] = "\(mpg) mpg"
                 }
             }
         })
