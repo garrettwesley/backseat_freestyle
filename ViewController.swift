@@ -39,6 +39,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if Auth.auth().currentUser != nil {
+            performSegue(withIdentifier: "successLogin", sender: Auth.auth().currentUser?.uid)
+        }
+        
         view.addSubview(emailInput)
         view.addSubview(passwordInput)
         

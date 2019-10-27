@@ -44,7 +44,6 @@ class MyCarsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         title = "My Cars"
         navigationItem.setHidesBackButton(true, animated:true)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addTapped))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Delete", style: .plain, target: self, action: #selector(deleteTapped))
         
         carTable = UITableView()
         carTable.register(UITableViewCell.self, forCellReuseIdentifier: "CarCell")
@@ -84,11 +83,6 @@ class MyCarsController: UIViewController, UITableViewDelegate, UITableViewDataSo
     @objc func addTapped(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: "connectToCar", sender: nil)
     }
-    
-    @objc func deleteTapped(_ sender: UIBarButtonItem) {
-          if myCars.count > 0 {
-              myCars.removeLast()}          
-      }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
