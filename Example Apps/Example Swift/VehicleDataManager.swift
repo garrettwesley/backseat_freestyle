@@ -117,10 +117,38 @@ extension VehicleDataManager {
                 updates["count"] = 1
                 count = 1
             }
+            
+            if data.speed != nil {
+                update_count[String(count)] = data.speed
+                print("THISSHOULDBEUPDATING")
+                print(count)
+                print(data.speed)
+                ref.root.child(self.carName).child("speed").updateChildValues(update_count)
+            }
+            if data.rpm != nil {
+                updates["rpm"] = data.rpm
+            }
+            if data.odometer != nil {
+                updates["odometer"] = data.odometer
+            }
+            if data.gps != nil {
+                updates["gps"] = data.gps
+            }
+            if data.fuelRange != nil {
+                updates["fuelRange"] = data.fuelRange
+            }
+            if data.fuelLevel != nil {
+                updates["fuelLevel"] = data.fuelLevel
+            }
+            if data.externalTemperature != nil {
+                updates["externalTemperature"] = data.externalTemperature
+            }
+            Database.database().reference().root.child(self.carName).updateChildValues(updates)
+            handler()
+            
         }
         })
-        print(data.speed)
-        if data.speed != nil {
+        /*if data.speed != nil {
             update_count[String(count)] = data.speed
             print("THISSHOULDBEUPDATING")
             print(count)
@@ -146,7 +174,7 @@ extension VehicleDataManager {
             updates["externalTemperature"] = data.externalTemperature
         }
         Database.database().reference().root.child(carName).updateChildValues(updates)
-        handler()
+        handler()*/
     }
     
 
