@@ -11,25 +11,61 @@ import Firebase
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var emailInput: UITextField!
-    @IBOutlet weak var passwordInput: UITextField!
-    var typewriterLabel: UILabel = {
-        var l = UILabel()
-        if #available(iOS 8.2, *) {
-            l.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        }
-        return l
+    @IBOutlet weak var typewriterLabel: UILabel!
+    var emailInput: UITextField = {
+        let input = UITextField()
+        input.layer.borderColor = UIColor.lightGray.cgColor
+        input.layer.borderWidth = 1
+        input.layer.cornerRadius = 10
+        input.borderStyle = .roundedRect
+        input.placeholder = "email"
+        input.autocorrectionType = .no
+        input.autocapitalizationType = .none
+        return input
+    }()
+    var passwordInput: UITextField = {
+        let input = UITextField()
+        input.layer.borderColor = UIColor.lightGray.cgColor
+        input.layer.borderWidth = 1
+        input.layer.cornerRadius = 10
+        input.borderStyle = .roundedRect
+        input.placeholder = "password"
+        input.isSecureTextEntry = true
+        input.autocorrectionType = .no
+        input.autocapitalizationType = .none
+        return input
     }()
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(typewriterLabel)
-        typewriterLabel.snp.makeConstraints { (make) in
-            make.top.left.equalTo(view).offset(20)
-            make.width.equalTo(view)
-            make.height.equalTo(100)
+        
+        view.addSubview(emailInput)
+        view.addSubview(passwordInput)
+        
+        emailInput.snp.makeConstraints { (make) in
+            make.width.equalTo(view).multipliedBy(0.8)
+            make.height.equalTo(50)
+            make.centerX.equalTo(view)
+            make.centerY.equalTo(view).offset(-40)
         }
+        passwordInput.snp.makeConstraints { (make) in
+            make.width.equalTo(view).multipliedBy(0.8)
+            make.height.equalTo(50)
+            make.centerX.equalTo(view)
+            make.top.equalTo(emailInput.snp.bottom).offset(10)
+        }
+        
+        
+        typewriterLabel.lineBreakMode = .byWordWrapping
+        typewriterLabel.numberOfLines = 0
+        if #available(iOS 8.2, *) {
+            typewriterLabel.font = UIFont.systemFont(ofSize: 21, weight: .bold)
+        }
+<<<<<<< HEAD
         typewriterLabel.setTextWithTypeAnimation(typedText: "Your Eyes On the Road", characterDelay: 100)
+=======
+        typewriterLabel.setTextWithTypeAnimation(typedText: "your eyes on the road")
+>>>>>>> 9b79ffdd7f07f56c5149f804ece03b4757d3facc
         
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true

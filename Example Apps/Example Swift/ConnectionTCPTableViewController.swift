@@ -29,7 +29,7 @@ class ConnectionTCPController: UIViewController, ProxyManagerDelegate {
 
     func initButton() {
         self.connectButton.setTitle("Connect", for: .normal)
-        self.connectButton.setTitleColor(.white, for: .normal)
+        self.connectButton.setTitleColor(.orange, for: .normal)
     }
     
     

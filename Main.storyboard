@@ -19,6 +19,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+<<<<<<< HEAD
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Shh-et-xM7">
                                 <rect key="frame" x="66" y="355" width="284" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -43,13 +44,30 @@
                                     <action selector="loginPushed:" destination="hUa-cG-ZNF" eventType="touchUpInside" id="ya4-bs-qQw"/>
                                 </connections>
                             </button>
+=======
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MhP-N0-Itd">
+                                <rect key="frame" x="190" y="510" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="login"/>
+                                <connections>
+                                    <action selector="loginPushed:" destination="YTO-Gm-Afc" eventType="touchUpInside" id="pop-AB-5yY"/>
+                                    <action selector="loginPushed:" destination="hUa-cG-ZNF" eventType="touchUpInside" id="ya4-bs-qQw"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0G8-RU-gpw">
+                                <rect key="frame" x="20" y="134" width="374" height="95"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="34"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+>>>>>>> 9b79ffdd7f07f56c5149f804ece03b4757d3facc
                         </subviews>
                         <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Backseat" id="Izg-ye-4NW"/>
                     <connections>
-                        <outlet property="emailInput" destination="Ers-eZ-Ool" id="J4X-kB-3G4"/>
-                        <outlet property="passwordInput" destination="Shh-et-xM7" id="6HG-Q9-moA"/>
+                        <outlet property="typewriterLabel" destination="0G8-RU-gpw" id="2Qp-pd-2uz"/>
                         <segue destination="Jx1-cx-i46" kind="show" identifier="successLogin" id="PU1-eX-LRh"/>
                     </connections>
                 </viewController>
