@@ -13,7 +13,7 @@ import SnapKit
 
 class CarDataController: UIViewController, ProxyManagerDelegate {
     var proxyState = ProxyState.stopped
-    var keys = ["speed", "avg speed", "rpm", "fuel level", "fuel range", "odometer", "coordinates", "temperature"]
+    var keys = ["speed", "avg speed", "rpm", "fuel level", "fuel range", "odometer", "coordinates", "temperature", "mpg"]
     
     lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -28,7 +28,7 @@ class CarDataController: UIViewController, ProxyManagerDelegate {
 
     @IBOutlet weak var connectButton: UIBarButtonItem!
     
-    var carData = ["", "", "" ,"" ,"" ,"" ,"", ""] {
+    var carData = ["", "", "" ,"" ,"" ,"" ,"", "", ""] {
         didSet {
             collectionView.reloadData()
         }
@@ -101,7 +101,7 @@ class CarDataController: UIViewController, ProxyManagerDelegate {
                     x += 1
                 }
                 if values["fuelLevel"] != nil {
-                    let fuelLevel = values["fuelLevel"] as! Double
+                    let fuelLevel = values["fuelLevel"] as! Int
                     self.carData[x] = "\(fuelLevel * 100)%"
                     x += 1
                 }
@@ -124,6 +124,16 @@ class CarDataController: UIViewController, ProxyManagerDelegate {
                     let externalTemperature = values["externalTemperature"] as! Int
                     self.carData[x] = "\(externalTemperature) C"
                     x += 1
+                }
+                if values["fuelLevel"] != nil && values["odometer"] != nil && values["firstfl"] != nil && values["firstod"] != nil{
+                    let odometer = values["odometer"] as! Int
+                    let fuelLevel = values["fuelLevel"] as! Int
+                    let firstod = values["firstod"] as! Int
+                    let firstfl = values["firstfl"] as! Int
+                    if (firstfl - fuelLevel != 0) {
+                        let mpg = (odometer - firstod) / (firstfl - fuelLevel)
+                        self.carData[x] = "\(mpg) mpg"
+                    }
                 }
             }
         })
