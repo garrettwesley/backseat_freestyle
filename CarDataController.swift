@@ -67,61 +67,59 @@ class CarDataController: UIViewController, ProxyManagerDelegate, UITableViewDele
             if snapshot.value != nil {
                 let values = snapshot.value as! [String: Any]
                 print(values)
+                var x = 0
                 if values["speed"] != nil {
-                    let speed = values["speed"] as! Int
-                    self.carData[0] = "Current Speed: \(speed) km/h"
-                }
-                if values["avgspeed"] != nil {
-                    let avgspeed = values["avgspeed"] as! Int
-                    self.carData[1] = "Average Speed of Trip: \(avgspeed) km/h"
+                    let speed = values["speed"] as! NSArray
+                    let totalLength = speed.count
+                    print(speed)
+                    let speed1 = speed[totalLength - 1]
+                    self.carData[x] = "Current Speed: \(speed1) km/h"
+                    x += 1
+                    var summar = 0
+                    for i in speed {
+                        summar += i as! Int
+                    }
+                    print(summar)
+                    let avgspeed = summar / totalLength
+                    print(avgspeed)
+                    self.carData[x] = "Average Speed of Trip: \(avgspeed) km/h"
+                    x += 1
                 }
                 if values["rpm"] != nil {
                     let rpm = values["rpm"] as! Int
-                    self.carData[2] = "RPM: \(rpm) rev/min"
+                    self.carData[x] = "RPM: \(rpm) rev/min"
+                    x += 1
                 }
                 if values["fuelLevel"] != nil {
                     let fuelLevel = values["fuelLevel"] as! Double
-                    self.carData[3] = "Fuel Level: \(fuelLevel * 100)%"
+                    self.carData[x] = "Fuel Level: \(fuelLevel * 100)%"
+                    x += 1
                 }
                 if values["fuelRange"] != nil {
                     let fuelRange = values["fuelRange"] as! Double
-                    self.carData[4] = "Fuel Range: \(fuelRange) km"
+                    self.carData[x] = "Fuel Range: \(fuelRange) km"
+                    x += 1
                 }
                 if values["odometer"] != nil {
                     let odometer = values["odometer"] as! Int
-                    self.carData[5] = "Total Miles: \(odometer) miles"
+                    self.carData[x] = "Total Miles: \(odometer) miles"
+                    x += 1
                 }
                 if values["gps"] != nil {
                     let gps = values["gps"] as! String
-                    self.carData[6] = "GPS Coordinates: \(gps)"
+                    self.carData[x] = "GPS Coordinates: \(gps)"
+                    x += 1
                 }
                 if values["externalTemperature"] != nil {
                     let externalTemperature = values["externalTemperature"] as! Int
-                    self.carData[7] = "External Temperature: \(externalTemperature) degrees Celsius"
+                    self.carData[x] = "External Temperature: \(externalTemperature) degrees Celsius"
+                    x += 1
                 }
             }
-            
-//            let totalLength = speed.count
-//            print(totalLength)
-//            let speed1 = speed.index(forKey: totalLength)
-//            var summar = 0
-//            for i in speed {
-//                summar = 0
-//                summar += i.value
-//            }
-//            let avgspeed = summar / totalLength
-            
-            
-            
-        
-            
-        
-            
-            
-            
         })
         
     }
+    
     
     func didChangeProxyState(_ newState: ProxyState) {
         proxyState = newState
