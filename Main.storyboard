@@ -100,11 +100,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <navigationItem key="navigationItem" id="UWh-Be-wXe"/>
+                    <navigationItem key="navigationItem" id="UWh-Be-wXe">
+                        <barButtonItem key="rightBarButtonItem" title="Connect" id="1dR-wG-2XU">
+                            <connections>
+                                <action selector="connectButtonWasPressed:" destination="tNg-Hp-53R" id="Ldj-4U-4yR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="connectButton" destination="1dR-wG-2XU" id="Z0s-iP-Lvu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U3o-HW-VLY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="852" y="-646"/>
+            <point key="canvasLocation" x="850.72463768115949" y="-646.20535714285711"/>
         </scene>
         <!--ConnectionTCP Controller-->
         <scene sceneID="YFa-C0-9iS">

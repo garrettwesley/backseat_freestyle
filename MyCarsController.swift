@@ -94,7 +94,8 @@ class MyCarsController: UIViewController, UITableViewDelegate, UITableViewDataSo
         if segue.identifier == "carpushed" {
             let name = sender as! String
             if let destination = segue.destination as? CarDataController {
-                destination.car_name = name
+                destination.car_name = name;
+                destination.user_uuid = user_uuid;
             }
         } else if segue.identifier == "connectToCar" {
             if let destination = segue.destination as? ConnectionTCPController {
