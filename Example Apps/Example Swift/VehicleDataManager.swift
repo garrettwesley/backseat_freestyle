@@ -99,9 +99,71 @@ extension VehicleDataManager {
         }
         
         print("NEW DATA------------------------")
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
         var updates: [String: Any] = [:]
-        if data.speed != nil {
-            updates["speed"] = data.speed
+        var update_count: [String: Any] = [:]
+        var count = 0
+        var first = 0
+        var second = 0
+        
+        ref.child(carName).observeSingleEvent(of : .value, with:{ snapshot in
+        print("Observing")
+        if !(snapshot.value is NSNull) {
+            let values = snapshot.value as! [String: Any]
+            if (values["count"] != nil){
+                count = values["count"] as! Int
+                count += 1
+                updates["count"] = count
+            } else {
+                updates["count"] = 1
+                count = 1
+            }
+            
+            if data.speed != nil {
+                update_count[String(count)] = data.speed
+                print("THISSHOULDBEUPDATING")
+                print(count)
+                print(data.speed)
+                ref.root.child(self.carName).child("speed").updateChildValues(update_count)
+            }
+            if data.rpm != nil {
+                updates["rpm"] = data.rpm
+            }
+            if data.odometer != nil {
+                if first == 0 {
+                    updates["firstod"] = data.odometer
+                    first += 1
+                }
+                updates["odometer"] = data.odometer
+            }
+            if data.gps != nil {
+                updates["gps"] = data.gps
+            }
+            if data.fuelRange != nil {
+                updates["fuelRange"] = data.fuelRange
+            }
+            if data.fuelLevel != nil {
+                if second == 0 {
+                    updates["firstfl"] = data.fuelLevel
+                    second += 1
+                }
+                updates["fuelLevel"] = data.fuelLevel
+            }
+            if data.externalTemperature != nil {
+                updates["externalTemperature"] = data.externalTemperature
+            }
+            Database.database().reference().root.child(self.carName).updateChildValues(updates)
+            handler()
+            
+        }
+        })
+        /*if data.speed != nil {
+            update_count[String(count)] = data.speed
+            print("THISSHOULDBEUPDATING")
+            print(count)
+            print(data.speed)
+            ref.root.child(self.carName).child("speed").updateChildValues(update_count)
         }
         if data.rpm != nil {
             updates["rpm"] = data.rpm
@@ -110,7 +172,7 @@ extension VehicleDataManager {
             updates["odometer"] = data.odometer
         }
         if data.gps != nil {
-            updates["gps"] = "\(data.gps!.latitudeDegrees)  \(data.gps!.longitudeDegrees)"
+            updates["gps"] = data.gps
         }
         if data.fuelRange != nil {
             updates["fuelRange"] = data.fuelRange
@@ -121,9 +183,8 @@ extension VehicleDataManager {
         if data.externalTemperature != nil {
             updates["externalTemperature"] = data.externalTemperature
         }
-        
         Database.database().reference().root.child(carName).updateChildValues(updates)
-        handler()
+        handler()*/
     }
     
 
