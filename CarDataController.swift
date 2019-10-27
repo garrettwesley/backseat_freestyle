@@ -64,7 +64,7 @@ class CarDataController: UIViewController, ProxyManagerDelegate, UITableViewDele
         ref = Database.database().reference()
         ref.child(car_name).observe(.value, with:{ snapshot in
             print("Observing")
-            if snapshot.value != nil {
+            if !(snapshot.value is NSNull) {
                 let values = snapshot.value as! [String: Any]
                 print(values)
                 var x = 0
