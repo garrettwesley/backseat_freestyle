@@ -13,6 +13,7 @@ import SnapKit
 
 class CarDataController: UIViewController, ProxyManagerDelegate {
     var proxyState = ProxyState.stopped
+    var keys = ["speed", "avg speed", "rpm", "fuel level", "fuel range", "odometer", "coordinates", "temperature"]
     
     lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -21,6 +22,7 @@ class CarDataController: UIViewController, ProxyManagerDelegate {
         cv.delegate = self
         cv.dataSource = self
         cv.alwaysBounceVertical = true
+        cv.backgroundColor = UIColor(red: 0.96, green: 0.97, blue: 0.98, alpha: 1.0)
         return cv
     }()
 
@@ -39,13 +41,21 @@ class CarDataController: UIViewController, ProxyManagerDelegate {
     
     override func viewDidLoad() {
         title = car_name
+        let row = UIView()
         
         ProxyManager.sharedManager.delegate = self
-        
+        view.backgroundColor = UIColor(red: 0.96, green: 0.97, blue: 0.98, alpha: 1.0)
+        view.addSubview(row)
+        view.addSubview(collectionView)
+
+        row.snp.makeConstraints { make in
+            make.top.left.right.equalTo(view)
+            make.height.equalTo(100)
+        }
         collectionView.snp.makeConstraints { make in
-            if #available(iOS 11.0, *) {
-                make.edges.equalTo(view.safeAreaLayoutGuide)
-            }
+            make.top.equalTo(row.snp.bottom)
+            make.centerX.bottom.equalTo(view)
+            make.width.equalTo(view).multipliedBy(0.9)
         }
 
         let db = Firestore.firestore();
@@ -69,55 +79,62 @@ class CarDataController: UIViewController, ProxyManagerDelegate {
         ref = Database.database().reference()
         ref.child(car_name).observe(.value, with:{ snapshot in
             print("Observing")
-            if snapshot.value != nil {
+            if !(snapshot.value is NSNull) {
                 let values = snapshot.value as! [String: Any]
                 print(values)
+                var x = 0
                 if values["speed"] != nil {
-                    let speed = values["speed"] as! Int
-                    self.carData[0] = "Current Speed: \(speed) km/h"
-                }
-                if values["avgspeed"] != nil {
-                    let avgspeed = values["avgspeed"] as! Int
-                    self.carData[1] = "Average Speed of Trip: \(avgspeed) km/h"
+                    let speed = values["speed"] as! NSArray
+                    let totalLength = speed.count
+                    print(speed)
+                    let speed1 = speed[totalLength - 1]
+                    self.carData[x] = "\(speed1) km/h"
+                    x += 1
+                    var summar = 0
+                    for i in speed {
+                        summar += i as! Int
+                    }
+                    print(summar)
+                    let avgspeed = summar / totalLength
+                    print(avgspeed)
+                    self.carData[x] = "\(avgspeed) km/h"
+                    x += 1
                 }
                 if values["rpm"] != nil {
                     let rpm = values["rpm"] as! Int
-                    self.carData[2] = "RPM: \(rpm) rev/min"
+                    self.carData[x] = "\(rpm) rev/min"
+                    x += 1
                 }
                 if values["fuelLevel"] != nil {
                     let fuelLevel = values["fuelLevel"] as! Double
-                    self.carData[3] = "Fuel Level: \(fuelLevel * 100)%"
+                    self.carData[x] = "\(fuelLevel * 100)%"
+                    x += 1
                 }
                 if values["fuelRange"] != nil {
                     let fuelRange = values["fuelRange"] as! Double
-                    self.carData[4] = "Fuel Range: \(fuelRange) km"
+                    self.carData[x] = "\(fuelRange) km"
+                    x += 1
                 }
                 if values["odometer"] != nil {
                     let odometer = values["odometer"] as! Int
-                    self.carData[5] = "Total Miles: \(odometer) miles"
+                    self.carData[x] = "\(odometer) miles"
+                    x += 1
                 }
                 if values["gps"] != nil {
                     let gps = values["gps"] as! String
-                    self.carData[6] = "GPS Coordinates: \(gps)"
+                    self.carData[x] = "\(gps)"
+                    x += 1
                 }
                 if values["externalTemperature"] != nil {
                     let externalTemperature = values["externalTemperature"] as! Int
-                    self.carData[7] = "External Temperature: \(externalTemperature) degrees Celsius"
+                    self.carData[x] = "\(externalTemperature) C"
+                    x += 1
                 }
             }
-            
-//            let totalLength = speed.count
-//            print(totalLength)
-//            let speed1 = speed.index(forKey: totalLength)
-//            var summar = 0
-//            for i in speed {
-//                summar = 0
-//                summar += i.value
-//            }
-//            let avgspeed = summar / totalLength
         })
         
     }
+    
     
     func didChangeProxyState(_ newState: ProxyState) {
         proxyState = newState
@@ -172,19 +189,21 @@ class CarDataController: UIViewController, ProxyManagerDelegate {
 
 class DataCell: UICollectionViewCell {
     let valueLabel: UILabel = {
-        let title = UILabel()
-        title.textAlignment = .center
-        title.font = .systemFont(ofSize: 30)
-        title.textColor = .blue
-        return title
+        let l = UILabel()
+        l.textAlignment = .center
+        l.font = .boldSystemFont(ofSize: 35)
+        l.textColor = .darkGray
+        l.adjustsFontSizeToFitWidth = true
+        l.minimumScaleFactor = 0.5
+        return l
     }()
     
     let keyLabel: UILabel = {
-        let date = UILabel()
-        date.textAlignment = .left
-        date.font = .systemFont(ofSize: 14)
-        date.textColor = .gray
-        return date
+        let l = UILabel()
+        l.textAlignment = .left
+        l.font = .systemFont(ofSize: 20)
+        l.textColor = UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
+        return l
     }()
     
     var key: String? {
@@ -192,18 +211,24 @@ class DataCell: UICollectionViewCell {
             display()
         }
     }
-    var value: String?
+    var value: String? {
+        didSet {
+            display()
+        }
+    }
     
     func display() {
+        contentView.backgroundColor = .white
+        contentView.layer.cornerRadius = 15
         contentView.addSubview(valueLabel)
         contentView.addSubview(keyLabel)
         
-        setupConstraints()
-    }
-
-    func setupConstraints() {
+        valueLabel.text = value
+        keyLabel.text = key
+        
         keyLabel.snp.makeConstraints { make in
-            make.top.width.equalTo(contentView)
+            make.width.equalTo(contentView).offset(-10)
+            make.top.left.equalTo(contentView).offset(10)
             make.height.equalTo(20)
         }
         valueLabel.snp.makeConstraints { make in
@@ -213,7 +238,7 @@ class DataCell: UICollectionViewCell {
     }
 }
 
-extension CarDataController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension CarDataController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return carData.count
@@ -224,13 +249,13 @@ extension CarDataController: UICollectionViewDelegate, UICollectionViewDataSourc
             fatalError("Cell not exists in storyboard")
         }
         
-        cell.key = "speed"
-        cell.value = String(77)
+        cell.key = keys[indexPath.item]
+        cell.value = carData[indexPath.item]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let padding: CGFloat =  50
+        let padding: CGFloat =  30
         let collectionViewSize = collectionView.frame.size.width - padding
         
         return CGSize(width: collectionViewSize / 2, height: collectionViewSize / 2)
