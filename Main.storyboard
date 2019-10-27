@@ -141,7 +141,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u1h-ur-T9L">
-                                <rect key="frame" x="178" y="350" width="59" height="30"/>
+                                <rect key="frame" x="100" y="350" width="215" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Connect"/>
                                 <connections>
@@ -159,7 +159,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ay-uI-GuE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="851" y="-1340"/>
+            <point key="canvasLocation" x="850.72463768115949" y="-1340.625"/>
         </scene>
     </scenes>
 </document>
