@@ -122,6 +122,10 @@ extension VehicleDataManager {
                 update_count[String(count)] = data.speed
                 ref.root.child(self.carName).child("speed").updateChildValues(update_count)
             }
+            if values["mpg"] != nil {
+                update_count[String(count)] = values["mpg"]
+                ref.root.child(self.carName).child("mpg").updateChildValues(update_count)
+            }
             if data.rpm != nil {
                 updates["rpm"] = data.rpm
             }
@@ -146,6 +150,7 @@ extension VehicleDataManager {
             if data.externalTemperature != nil {
                 updates["externalTemperature"] = data.externalTemperature
             }
+        
             Database.database().reference().root.child(self.carName).updateChildValues(updates)
             handler()
             
