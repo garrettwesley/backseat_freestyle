@@ -68,6 +68,7 @@ class CarDataController: UIViewController, ProxyManagerDelegate, UITableViewDele
             let values = snapshot.value as! NSDictionary
             let rpm = values["rpm"] as! Int
             let speed = values["speed"] as! Int
+            let avgspeed = values["avgspeed"] as! Int
             let fuelLevel = values["fuelLevel"] as! Double
             let fuelRange = values["fuelRange"] as! Double
             let odometer = values["odometer"] as! Int
@@ -75,13 +76,14 @@ class CarDataController: UIViewController, ProxyManagerDelegate, UITableViewDele
             let tirePressure = values["tirePressure"] as! Double
             let externalTemperature = values["externalTemperature"] as! Int
             self.carData[0] = "Current Speed: \(speed) km/h"
-            self.carData[1] = "RPM: \(rpm) rev/min"
-            self.carData[2] = "Fuel Level: \(fuelLevel * 100)%"
-            self.carData[3] = "Fuel Range: \(fuelRange) km"
-            self.carData[4] = "Total Miles: \(odometer) miles"
-            self.carData[5] = "GPS Coordinates: \(gps)"
-            self.carData[6] = "Tire Pressure: \(tirePressure) psi"
-            self.carData[7] = "External Temperature: \(externalTemperature) degrees Celsius"
+            self.carData[1] = "Average Speed of Trip: \(avgspeed) km/h"
+            self.carData[2] = "RPM: \(rpm) rev/min"
+            self.carData[3] = "Fuel Level: \(fuelLevel * 100)%"
+            self.carData[4] = "Fuel Range: \(fuelRange) km"
+            self.carData[5] = "Total Miles: \(odometer) miles"
+            self.carData[6] = "GPS Coordinates: \(gps)"
+            self.carData[7] = "Tire Pressure: \(tirePressure) psi"
+            self.carData[8] = "External Temperature: \(externalTemperature) degrees Celsius"
         })
         
     }
