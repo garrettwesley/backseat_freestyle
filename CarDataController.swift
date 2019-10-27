@@ -13,4 +13,10 @@ class CarDataController: UIViewController {
     override func viewDidLoad() {
         title = car_name
     }
+    
+    @IBAction func connectIp(_ sender: Any) {
+        
+    }
+    
+    
 }
