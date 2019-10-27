@@ -9,16 +9,19 @@
 import Foundation
 import SmartDeviceLink
 import SmartDeviceLinkSwift
-import CryptoTokenKit
-
+import Firebase
+import FirebaseDatabase
 
 class VehicleDataManager: NSObject {
     fileprivate let sdlManager: SDLManager!
     fileprivate var refreshUIHandler: RefreshUIHandler?
+    fileprivate let carName: String
     public fileprivate(set) var vehicleOdometerData: String
 
-    init(sdlManager: SDLManager, refreshUIHandler: RefreshUIHandler? = nil) {
+    init(sdlManager: SDLManager, carName: String, refreshUIHandler: RefreshUIHandler? = nil) {
+        print("CAR NAME: \(carName)")
         self.sdlManager = sdlManager
+        self.carName = carName
         self.refreshUIHandler = refreshUIHandler
         self.vehicleOdometerData = ""
         super.init()
@@ -95,9 +98,11 @@ extension VehicleDataManager {
         guard let handler = refreshUIHandler, let onVehicleData = notification.notification as? SDLOnVehicleData else {
             return
         }
+        FirebaseApp.configure()
         
-        print("NEW DATA")
-        print(onVehicleData)
+        print("NEW DATA------------------------")
+        Database.database().reference().child(self.carName ).setValue(["Fule": onVehicleData.speed ]);
+        //FIREBASE
         
         vehicleOdometerData = "\(VehicleDataOdometerName): \(10) km"
         handler()

@@ -116,7 +116,7 @@ class CarDataController: UIViewController, ProxyManagerDelegate, UITableViewDele
             
             switch proxyState {
             case .stopped:
-                ProxyManager.sharedManager.start(with: .tcp)
+                ProxyManager.sharedManager.start(with: .tcp, carName: car_name)
             case .searching:
                 ProxyManager.sharedManager.stopConnection()
             case .connected:

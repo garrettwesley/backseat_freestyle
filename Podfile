@@ -47,7 +47,6 @@ target 'SmartDeviceLink-Example-Swift' do
   pod 'Firebase/Storage'
   pod 'Firebase/Database'
 
-
 end
 
 target 'SmartDeviceLinkSwift' do

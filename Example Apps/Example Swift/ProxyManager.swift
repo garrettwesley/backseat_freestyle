@@ -42,16 +42,16 @@ extension ProxyManager {
     /// Configures the SDL Manager that handles data transfer beween this app and the car's head unit and starts searching for a connection to a head unit. There are two possible types of transport layers to use: TCP is used to connect wirelessly to SDL Core and is only available for debugging; iAP is used to connect to MFi (Made for iPhone) hardware and is must be used for production builds.
     ///
     /// - Parameter connectionType: The type of transport layer to use.
-    func start(with proxyTransportType: ProxyTransportType) {
+    func start(with proxyTransportType: ProxyTransportType, carName: String) {
         guard sdlManager == nil else {
             // Manager already created, just start it again.
-            startManager()
+            startManager(carName: carName)
             return
         }
 
         delegate?.didChangeProxyState(ProxyState.searching)
         sdlManager = SDLManager(configuration: proxyTransportType == .iap ? ProxyManager.connectIAP() : ProxyManager.connectTCP(), delegate: self)
-        startManager()
+        startManager(carName: carName)
     }
 
     /// Attempts to close the connection between the this app and the car's head unit. The `SDLManagerDelegate`'s `managerDidDisconnect()` is called when connection is actually closed.
@@ -125,7 +125,7 @@ private extension ProxyManager {
     }
 
     /// Searches for a connection to a SDL enabled accessory. When a connection has been established, the ready handler is called. Even though the app is connected to SDL Core, it does not mean that RPCs can be immediately sent to the accessory as there is no guarentee that SDL Core is ready to receive RPCs. Monitor the `SDLManagerDelegate`'s `hmiLevel:didChangeToLevel:` to determine when to send RPCs.
-    func startManager() {
+    func startManager(carName: String) {
         sdlManager.start(readyHandler: { [unowned self] (success, error) in
             guard success else {
                 SDLLog.e("There was an error while starting up: \(String(describing: error))")
@@ -136,7 +136,7 @@ private extension ProxyManager {
             self.delegate?.didChangeProxyState(ProxyState.connected)
 
             self.buttonManager = ButtonManager(sdlManager: self.sdlManager, updateScreenHandler: self.refreshUIHandler)
-            self.vehicleDataManager = VehicleDataManager(sdlManager: self.sdlManager, refreshUIHandler: self.refreshUIHandler)
+            self.vehicleDataManager = VehicleDataManager(sdlManager: self.sdlManager, carName: carName, refreshUIHandler: self.refreshUIHandler)
             self.performInteractionManager = PerformInteractionManager(sdlManager: self.sdlManager)
 
             RPCPermissionsManager.setupPermissionsCallbacks(with: self.sdlManager)
