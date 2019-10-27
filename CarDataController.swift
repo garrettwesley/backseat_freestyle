@@ -63,15 +63,12 @@ class CarDataController: UIViewController, ProxyManagerDelegate, UITableViewDele
         var ref: DatabaseReference!
         ref = Database.database().reference()
         ref.child(car_name).observe(.value, with:{ snapshot in
-            print("Observing")
             if !(snapshot.value is NSNull) {
                 let values = snapshot.value as! [String: Any]
-                print(values)
                 var x = 0
                 if values["speed"] != nil {
                     let speed = values["speed"] as! NSArray
                     let totalLength = speed.count
-                    print(speed)
                     let speed1 = speed[totalLength - 1]
                     self.carData[x] = "Current Speed: \(speed1) km/h"
                     x += 1
@@ -79,9 +76,7 @@ class CarDataController: UIViewController, ProxyManagerDelegate, UITableViewDele
                     for i in speed {
                         summar += i as! Int
                     }
-                    print(summar)
                     let avgspeed = summar / totalLength
-                    print(avgspeed)
                     self.carData[x] = "Average Speed of Trip: \(avgspeed) km/h"
                     x += 1
                 }
