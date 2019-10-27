@@ -10,6 +10,7 @@ target 'SmartDeviceLink' do
   pod 'Firebase/Messaging'
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
+  pod 'Firebase/Database'
 
   # Pods for SmartDeviceLink
 
@@ -29,6 +30,7 @@ target 'SmartDeviceLink-Example-ObjC' do
   pod 'Firebase/Messaging'
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
+  pod 'Firebase/Database'
 
   # Pods for SmartDeviceLink-Example-ObjC
 
@@ -43,6 +45,7 @@ target 'SmartDeviceLink-Example-Swift' do
   pod 'Firebase/Auth'
   pod 'Firebase/Messaging'
   pod 'Firebase/Storage'
+  pod 'Firebase/Database'
 
 
 end
@@ -56,6 +59,7 @@ target 'SmartDeviceLinkSwift' do
   pod 'Firebase/Messaging'
   pod 'Firebase/Auth'
   pod 'Firebase/Storage'
+  pod 'Firebase/Database'
 
   # Pods for SmartDeviceLinkSwift
 

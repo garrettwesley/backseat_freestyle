@@ -9,6 +9,7 @@
 import Foundation
 import SmartDeviceLink
 import SmartDeviceLinkSwift
+import CryptoTokenKit
 
 
 class VehicleDataManager: NSObject {
@@ -101,12 +102,14 @@ extension VehicleDataManager {
         vehicleOdometerData = "\(VehicleDataOdometerName): \(10) km"
         handler()
     }
+    
 
     /// Resets the odometer data
     fileprivate func resetOdometer() {
         vehicleOdometerData = "\(VehicleDataOdometerName): Unsubscribed"
     }
 }
+
 
 // MARK: - Get Vehicle Data
 

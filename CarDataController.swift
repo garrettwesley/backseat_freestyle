@@ -8,11 +8,19 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
 
-class CarDataController: UIViewController, ProxyManagerDelegate {
+class CarDataController: UIViewController, ProxyManagerDelegate, UITableViewDelegate, UITableViewDataSource {
     var proxyState = ProxyState.stopped
+    private var dataTable: UITableView!
+
     @IBOutlet weak var connectButton: UIBarButtonItem!
     
+    var carData = ["", "", "", "" ,"" ,"" ,"" ,""] {
+        didSet {
+            dataTable.reloadData()
+        }
+    }
     var car_name = ""
     var user_uuid = ""
     var ipAddress = ""
@@ -23,6 +31,16 @@ class CarDataController: UIViewController, ProxyManagerDelegate {
         title = car_name
         
         ProxyManager.sharedManager.delegate = self
+        
+        dataTable = UITableView()
+        dataTable.register(UITableViewCell.self, forCellReuseIdentifier: "DataCell")
+        dataTable.dataSource = self
+        dataTable.delegate = self
+        view.addSubview(dataTable)
+        
+        dataTable.snp.makeConstraints { (make) in
+            make.edges.equalTo(view)
+        }
         
         let db = Firestore.firestore();
         let docRef = db.collection("user_UUID").document(user_uuid).collection("cars").document(car_name)
@@ -37,6 +55,25 @@ class CarDataController: UIViewController, ProxyManagerDelegate {
                 print("Document does not exist")
             }
         }
+        getData()
+    }
+    
+    func getData() {
+        print("Fetching data from firebase")
+        var ref: DatabaseReference!
+        ref = Database.database().reference()
+        
+        ref.child(car_name).observe(.value, with:{ snapshot in
+            print("Observing")
+            let values = snapshot.value as! NSDictionary
+            let rpm = values["rpm"] as! Int
+            let speed = values["speed"] as! Int
+            let fuelLevel = values["fuelLevel"] as! Double
+            self.carData[0] = "Current Speed: \(speed) km/h"
+            self.carData[1] = "RPM: \(rpm) rev/min"
+            self.carData[2] = "Fuel Level: \(fuelLevel * 100)%"
+        })
+        
     }
     
     func didChangeProxyState(_ newState: ProxyState) {
@@ -90,6 +127,20 @@ class CarDataController: UIViewController, ProxyManagerDelegate {
             alertMessage.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self.present(alertMessage, animated: true, completion: nil)
         }
+    }
+        
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return carData.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = dataTable.dequeueReusableCell(withIdentifier: "DataCell", for: indexPath)
+        cell.textLabel?.text = carData[indexPath.row]
+        return cell
     }
     
 }
