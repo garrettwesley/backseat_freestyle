@@ -104,6 +104,7 @@ extension VehicleDataManager {
         var updates: [String: Any] = [:]
         var update_count: [String: Any] = [:]
         var count = 0
+        var first = 0
         
         ref.child(carName).observeSingleEvent(of : .value, with:{ snapshot in
         print("Observing")
@@ -129,6 +130,9 @@ extension VehicleDataManager {
                 updates["rpm"] = data.rpm
             }
             if data.odometer != nil {
+                if updates["odometer"] == nil {
+                    updates["firstod"] = data.odometer
+                }
                 updates["odometer"] = data.odometer
             }
             if data.gps != nil {
@@ -138,6 +142,9 @@ extension VehicleDataManager {
                 updates["fuelRange"] = data.fuelRange
             }
             if data.fuelLevel != nil {
+                if updates["fuelLevel"] == nil {
+                    updates["firstfl"] = data.odometer
+                }
                 updates["fuelLevel"] = data.fuelLevel
             }
             if data.externalTemperature != nil {
